@@ -1,0 +1,45 @@
+http:
+  routers:
+    pve1:
+      entryPoints:
+        - "https"
+      rule: "Host(`elk.corp.mabnadp.com`)"
+      middlewares:
+        - aut
+        - default-headers
+      tls: {}
+      service: pve1
+  services:
+    pve1:
+      loadBalancer:
+        servers:
+                - url: "http://192.168.10.53:5601"
+        passHostHeader: true
+
+  middlewares:
+    https-redirect:
+      redirectScheme:
+        scheme: https
+
+    aut:
+      forwardAuth:
+        address: "http://authelia:9091/api/verify?rd=https://authelia.corp.mabnadp.com"
+    default-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+
+    secured:
+      chain:
+        middlewares:
+        - default-whitelist
+        - default-headers
