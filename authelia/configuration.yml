@@ -33,7 +33,7 @@ authentication_backend:
     base_dn: dc=mabnadp,dc=local
     username_attribute: uid
     additional_users_dn: cn=users,cn=accounts
-    users_filter: (&({username_attribute}={input})(objectClass=person))
+    users_filter: (&({username_attribute}={input})(objectClass=person)(!(nsaccountlock=TRUE)))
     additional_groups_dn: cn=groups,cn=accounts
     groups_filter: (&(member=uid={input},cn=users,cn=accounts,dc=mabnadp,dc=local)(objectclass=groupofnames))
     group_name_attribute: cn
