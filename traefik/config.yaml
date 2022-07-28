@@ -3,7 +3,7 @@ http:
     pve1:
       entryPoints:
         - "https"
-      rule: "Host(`elk.corp.mabnadp.com`)"
+      rule: "Host(`elk.packops.local`)"
       middlewares:
         - aut
         - default-headers
@@ -23,7 +23,7 @@ http:
 
     aut:
       forwardAuth:
-        address: "http://authelia:9091/api/verify?rd=https://authelia.corp.mabnadp.com"
+        address: "http://authelia:9091/api/verify?rd=https://authelia.packops.local"
     default-headers:
       headers:
         frameDeny: true
