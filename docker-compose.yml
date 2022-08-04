@@ -15,7 +15,7 @@ services:
       - net
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.authelia.rule=Host(`authelia.corp.mabnadp.com`)'
+      - 'traefik.http.routers.authelia.rule=Host(`authelia.packops.local`)'
       - 'traefik.http.routers.authelia.entrypoints=https'
       - 'traefik.http.routers.authelia.tls=true'
       - 'traefik.http.routers.authelia.tls.certresolver=letsencrypt'
@@ -28,7 +28,7 @@ services:
     healthcheck:
       disable: true
     environment:
-      - TZ=Australia/Melbourne
+      - TZ=Asia/Tehran
 
   redis:
     image: redis:alpine
@@ -41,7 +41,7 @@ services:
       - 6379
     restart: unless-stopped
     environment:
-      - TZ=Australia/Melbourne
+      - TZ=Asia/Tehran
 
   traefik:
     image: traefik:2.4
