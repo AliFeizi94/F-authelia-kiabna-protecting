@@ -13,7 +13,7 @@ http:
     pve1:
       loadBalancer:
         servers:
-                - url: "http://192.168.4.182:9090"
+                - url: "http://192.168.5.220:9090"
         passHostHeader: true
 
   middlewares:
