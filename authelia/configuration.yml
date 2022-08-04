@@ -4,8 +4,7 @@
 ###############################################################
 
 jwt_secret: a_very_important_secret
-default_redirection_url: https://authelia.corp.mabnadp.com
-
+default_redirection_url: https://authelia.packops.local
 server:
   host: 0.0.0.0
   port: 9091
@@ -18,19 +17,19 @@ totp:
   issuer: authelia.com
 
 
-# LDAP CONFIGURATION OF MABNADP 
+# LDAP CONFIGURATION OF Packops
 
 authentication_backend:
   disable_reset_password: false
   refresh_interval: 5m
   ldap:
     implementation: custom
-    url: ldap://192.168.100.54
+    url: ldap://192.168.4.54
     start_tls: false
     tls:
       skip_verify: false
       minimum_version: TLS1.2
-    base_dn: dc=test,dc=local
+    base_dn: dc=packops,dc=local
     username_attribute: uid
     additional_users_dn: cn=users,cn=accounts
     users_filter: (&({username_attribute}={input})(objectClass=person)(!(nsaccountlock=TRUE)))
@@ -39,15 +38,15 @@ authentication_backend:
     group_name_attribute: cn
     mail_attribute: mail
     display_name_attribute: givenName
-    user: uid=admin,cn=users,cn=accounts,dc=test,dc=local
-    password: asdasd
+    user: uid=admin,cn=users,cn=accounts,dc=packops,dc=local
+    password: Aaqwer1234
 
 
 access_control:
   default_policy: deny
   rules:
     # Rules applied to everyone
-    - domain: elk.corp.test.com
+    - domain: prometheus.packops.local
       policy: one_factor
     - domain: pve1.example.com
       policy: one_factor
@@ -58,7 +57,7 @@ session:
   secret: unsecure_session_secret
   expiration: 3600  # 1 hour
   inactivity: 300  # 5 minutes
-  domain: corp.mabnadp.com  # Should match whatever your root protected domain is
+  domain: packops.local  # Should match whatever your root protected domain is
 
   redis:
     host: redis
