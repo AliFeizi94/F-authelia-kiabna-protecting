@@ -3,7 +3,7 @@ http:
     pve1:
       entryPoints:
         - "https"
-      rule: "Host(`elk.packops.local`)"
+      rule: "Host(`prometheus.packops.local`)"
       middlewares:
         - aut
         - default-headers
@@ -13,7 +13,7 @@ http:
     pve1:
       loadBalancer:
         servers:
-                - url: "http://192.168.10.53:5601"
+                - url: "http://192.168.4.182:9090"
         passHostHeader: true
 
   middlewares:
