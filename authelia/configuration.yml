@@ -17,29 +17,33 @@ totp:
   issuer: authelia.com
 
 
+authentication_backend:
+  file:
+    path: /config/users_database.yml
+
 # LDAP CONFIGURATION OF Packops
 
-authentication_backend:
-  disable_reset_password: false
-  refresh_interval: 5m
-  ldap:
-    implementation: custom
-    url: ldap://192.168.4.54
-    start_tls: false
-    tls:
-      skip_verify: false
-      minimum_version: TLS1.2
-    base_dn: dc=packops,dc=local
-    username_attribute: uid
-    additional_users_dn: cn=users,cn=accounts
-    users_filter: (&({username_attribute}={input})(objectClass=person)(!(nsaccountlock=TRUE)))
-    additional_groups_dn: cn=groups,cn=accounts
-    groups_filter: (&(member=uid={input},cn=users,cn=accounts,dc=test,dc=local)(objectclass=groupofnames))
-    group_name_attribute: cn
-    mail_attribute: mail
-    display_name_attribute: givenName
-    user: uid=admin,cn=users,cn=accounts,dc=packops,dc=local
-    password: Aaqwer1234
+#authentication_backend:
+#  disable_reset_password: false
+#  refresh_interval: 5m
+#  ldap:
+#    implementation: custom
+#    url: ldap://192.168.4.54
+#    start_tls: false
+#    tls:
+#      skip_verify: false
+#      minimum_version: TLS1.2
+#    base_dn: dc=packops,dc=local
+#    username_attribute: uid
+#    additional_users_dn: cn=users,cn=accounts
+#    users_filter: (&({username_attribute}={input})(objectClass=person)(!(nsaccountlock=TRUE)))
+#    additional_groups_dn: cn=groups,cn=accounts
+#    groups_filter: (&(member=uid={input},cn=users,cn=accounts,dc=test,dc=local)(objectclass=groupofnames))
+#    group_name_attribute: cn
+#    mail_attribute: mail
+#    display_name_attribute: givenName
+#    user: uid=admin,cn=users,cn=accounts,dc=packops,dc=local
+#    password: Aaqwer1234
 
 
 access_control:
